@@ -1,0 +1,62 @@
+suppose we have our featurecounts output.
+what we have is some columns, and each coulmn bellings to a particular sample.
+we can open the thing in exel and rename each column as col and mutant.
+
+suppose countdata is the file with this information.
+
+
+to read it
+countdata = read.csv('readcounts.csv', header = 1)
+this will assign the first row a header
+
+
+we can assign row name to the dta as 
+
+
+rownames(countdata) = countdata$Geneid
+so, the column of Geneid will be assigned as the first column giving name to each row.
+
+now to remove the first column as it is no longer needed. We do:
+
+countdata=countdata[,-1]
+
+we can rename the cloumns as:
+
+columns_name = c("col_1","col_2"...)
+
+colnames(countdata) =columns_name
+
+we can get an estimate of total events in each column by
+
+barplot(colSums(countdata/1e6))
+
+this will divide the y axis by 1 million
+
+#we might also see a good number of zeros in our data; to get an estimate of that we take a column and make a histogram of that by:
+
+hist(countdata$col_name, br=100)
+
+#will split things in 100 bins, so if the majority is zero, we will see  big ass bar on zero and almost nothing on the other bars.
+
+#the problem is: the zero bin is too high, making other bins touching the x axis itself. So, we do a log2 transformation.
+
+#doing a log 2 transform basically means how many times that number can be divided by 2:
+
+like log2(8) would mean 3
+
+to do it:
+
+logCountData = log2(1+countdata)
+
+we added 1 as log2(0) would make the value -infinity.
+
+and the zeros will stay zero 
+
+we create something called coldata, that has one column as the geneid, 2nd as the its genotype, 3rd is the treatment.
+
+we make it as:
+
+coldata = as.data.frame(cbind(colnames(countdata), mut, treatment))
+
+
+

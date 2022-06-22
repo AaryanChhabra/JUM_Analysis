@@ -1,0 +1,22 @@
+getwd()
+library(tidyverse)
+
+tair10.53_genepred <- read_tsv("Arabidopsis_thaliana.TAIR10.53.txt", col_names = F)
+View(tair10.53_genepred)
+tair10.53_genepred_bygtf <- read_tsv("Arabidopsis_thaliana.TAIR10.53_bygtf.txt", col_names = F)
+View(tair10.53_genepred_bygtf)
+old_genepred <- read_tsv("TAIR10.1_genePred_bygff.txt", col_names = F)
+view(old_genepred)
+
+tair10.53_genepred_bygtf_1 <- tair10.53_genepred_bygtf %>% 
+  tidyr::separate(col = X1, into = c("X11", "Isoform"),sep = ":") %>% 
+  tidyr::separate(col = Isoform, into = c("GeneName", "X14"),sep = "\\.",remove = F) %>% 
+  dplyr::select(-c("X11", "X14")) %>% 
+  drop_na()
+view(tair10.53_genepred_bygtf_1)
+
+tair10.53_genepred_bygtf_2 <- tair10.53_genepred_bygtf_1[,c('GeneName','Isoform','X2','X3','X4','X5','X6','X7','X8','X9','X10' )]
+view(tair10.53_genepred_bygtf_2)
+
+
+
