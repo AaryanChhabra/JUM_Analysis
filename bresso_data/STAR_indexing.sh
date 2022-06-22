@@ -2,7 +2,6 @@
 
 cd bresso_data
 
-#indexing from TAIR10.1 with new --sjdboverhang value
 
 mkdir STAR_index_10.53
 
