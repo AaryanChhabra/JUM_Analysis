@@ -3,7 +3,7 @@
 
 
 bash JUM_2.0.2/JUM_A.sh --Folder (whole path to the folder)../JUM_2.0.2 --JuncThreshold 3 --Condition1_fileNum_threshold 2 --Condition2_fileNum_threshold 2 --IRthreshold 3 --Readlength 97 --Thread 8 --Condition1SampleName col0_1,col0_2,col0_3 --Condition2SampleName tcp23410_1,tcp23410_2,tcp23410_3
-
+# its important to mention the whole path to the folder where I have mentioed it.
 
 cd JUM_diff
 
